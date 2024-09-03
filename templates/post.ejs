@@ -1,0 +1,21 @@
+<%
+  const categories = post.categories && post.categories.length > 0
+    ? post.categories.map(category => `
+      <a href="/category/${category}" class="badge bg-light text-dark">${category}</a>
+    `).join(' ')
+    : '';
+%>
+<%- include('layouts/main', { title: post.title, content: `
+<article>
+  <h1>${post.title}</h1>
+  <div class="meta">
+    <span>${helpers.formatDate(post.date)}</span>
+    <span class="mx-2">•</span>
+    <span>${post.author}</span>
+    ${categories ? `<span class="mx-2">•</span>${categories}` : ''}
+  </div>
+  <div class="content">
+    ${post.content}
+  </div>
+</article>
+` }) %>

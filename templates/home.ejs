@@ -1,0 +1,58 @@
+<%- include('layouts/main', { 
+    title: 'Home',
+    content: `
+    <div class="jumbotron text-center mb-5">
+        <h1 class="display-4">Welcome to ${config.siteName}</h1>
+        <p class="lead">${config.siteDescription}</p>
+        <hr class="my-4">
+        <p>Explore the world of technology, programming, and web development with me.</p>
+        <a class="btn btn-outline-primary" href="/blog" role="button">Explore Blog</a>
+    </div>
+
+    <div class="row mb-5">
+        <div class="col-md-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h2 class="card-title">Expert Insights</h2>
+                    <p class="card-text">Gain valuable insights from my years of experience in the tech industry. I share practical tips, best practices, and in-depth analyses of the latest trends.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h2 class="card-title">Tutorials & Guides</h2>
+                    <p class="card-text">Learn new skills with step-by-step tutorials and comprehensive guides. From beginner to advanced topics, there's something for everyone.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h2 class="card-title">Tech Reviews</h2>
+                    <p class="card-text">Stay up-to-date with the latest tools and technologies. I provide honest reviews and comparisons to help you make informed decisions.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="mt-5">
+        <h3 class="mb-4">Latest Posts</h3>
+        <div class="row">
+            ${posts.slice(0, 3).map(post => `
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h5 class="card-title">${post.title}</h5>
+                            <p class="card-text">${helpers.truncate(post.description, 100)}</p>
+                        </div>
+                        <div class="card-footer bg-white border-top-0">
+                            <a href="${post.url}" class="btn btn-outline-primary">Read More</a>
+                        </div>
+                    </div>
+                </div>
+            `).join('')}
+        </div>
+    </div>
+    `
+}) %>

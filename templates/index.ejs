@@ -1,0 +1,41 @@
+<%- include('layouts/main', { 
+    title: 'Blog',
+    content: `
+    <h1 class="mb-4">Blog Posts</h1>
+
+    <form id="search-form" class="mb-4">
+        <div class="input-group">
+            <input type="text" id="search-input" class="form-control" placeholder="Search posts...">
+            <button class="btn btn-primary" type="submit">Search</button>
+        </div>
+    </form>
+
+    <div id="search-results" class="row" style="display: none;"></div>
+
+    <div id="content" class="row">
+        ${posts.map(post => `
+            <div class="col-md-6 mb-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title"><a href="${post.url}">${post.title}</a></h5>
+                        <h6 class="card-subtitle mb-2 text-muted">${helpers.formatDate(post.date)}</h6>
+                        <p class="card-text">${helpers.truncate(post.description, 150)}</p>
+                        <a href="${post.url}" class="btn btn-outline-primary">Read More!</a>
+                    </div>
+                </div>
+            </div>
+        `).join('')}
+    </div>
+
+    <!-- Pagination -->
+    <nav aria-label="Page navigation" class="mt-4">
+        <ul class="pagination justify-content-center">
+            ${Array.from({length: totalPages}, (_, i) => i + 1).map(page => `
+                <li class="page-item ${page === currentPage ? 'active' : ''}">
+                    <a class="page-link" href="/blog/page/${page}">${page}</a>
+                </li>
+            `).join('')}
+        </ul>
+    </nav>
+    `
+}) %>

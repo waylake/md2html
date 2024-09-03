@@ -1,0 +1,22 @@
+{
+  "main": "src/index.js",
+  "scripts": {
+    "build": "node src/build/index.js",
+    "serve": "node src/serve/index.js",
+    "start": "npm run build && npm run serve"
+  },
+  "dependencies": {
+    "chokidar": "^3.6.0",
+    "connect-livereload": "^0.6.1",
+    "ejs": "^3.1.10",
+    "express": "^4.19.2",
+    "feed": "^4.2.2",
+    "fs-extra": "^11.2.0",
+    "gray-matter": "^4.0.3",
+    "highlight.js": "^11.10.0",
+    "livereload": "^0.9.3",
+    "markdown-toc": "^1.2.0",
+    "marked": "^14.1.0",
+    "yaml": "^2.5.0"
+  }
+}

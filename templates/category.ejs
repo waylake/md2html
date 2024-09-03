@@ -1,0 +1,19 @@
+<%- include('layouts/main', { title: `Category: ${category}`, content: `
+<h1>Posts in category: ${category}</h1>
+<div class="row">
+  ${posts.map(post => `
+  <div class="col-md-6 mb-4">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">${post.title}</h5>
+        <h6 class="card-subtitle mb-2 text-muted">
+          ${helpers.formatDate(post.date)}
+        </h6>
+        <p class="card-text">${helpers.truncate(post.description, 150)}</p>
+        <a href="${config.siteUrl}${post.url}" class="btn btn-primary">Read More</a>
+      </div>
+    </div>
+  </div>
+  `).join('')}
+</div>
+` }) %>

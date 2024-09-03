@@ -1,0 +1,9 @@
+siteName: "내 멋진 블로그"
+siteDescription: "웹 개발, 프로그래밍, 그리고 기술에 대한 이야기"
+siteUrl: "http://localhost:3000"
+baseUrl: "/"
+siteAuthor: "홍길동"
+siteEmail: "hong@example.com"
+language: "ko"
+theme: "light"
+postsPerPage: 10

@@ -1,6 +1,5 @@
 siteName: "My Awesome Blog"
 siteDescription: "A blog about web development and technology"
 siteAuthor: "John Doe"
-siteUrl: "http://localhost:3000"
 language: "en"
 postsPerPage: 5

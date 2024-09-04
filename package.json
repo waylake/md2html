@@ -17,6 +17,7 @@
     "livereload": "^0.9.3",
     "markdown-toc": "^1.2.0",
     "marked": "^14.1.0",
+    "sitemap": "^8.0.0",
     "yaml": "^2.5.0"
   }
 }

@@ -1,6 +1,5 @@
 const fs = require("fs-extra");
 const ejs = require("ejs");
-const path = require("path");
 const helpers = require("../utils/helpers");
 
 async function buildPages(config, posts) {
@@ -10,6 +9,7 @@ async function buildPages(config, posts) {
     index: await fs.readFile("templates/index.ejs", "utf8"),
     category: await fs.readFile("templates/category.ejs", "utf8"),
     pagination: await fs.readFile("templates/pagination.ejs", "utf8"),
+    notFound: await fs.readFile("templates/404.ejs", "utf8"),
   };
 
   // Build home page
@@ -21,10 +21,9 @@ async function buildPages(config, posts) {
   await fs.outputFile("public/index.html", homeHtml);
 
   // Build 404 page
-  const notFoundTemplate = await fs.readFile("templates/404.ejs", "utf8");
   const notFoundHtml = ejs.render(
-    notFoundTemplate,
-    { config, title: "404 Not Found" },
+    templates.notFound,
+    { config, helpers },
     { filename: "templates/404.ejs" },
   );
   await fs.outputFile("public/404.html", notFoundHtml);
@@ -101,7 +100,7 @@ async function buildPages(config, posts) {
   const searchIndex = posts.map((post) => ({
     title: post.title,
     description: post.description,
-    url: post.url,
+    url: `${config.siteUrl}${post.url}`,
     categories: post.categories,
     date: post.date,
   }));

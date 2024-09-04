@@ -1,5 +1,11 @@
+<%
+const description = `Blog posts - Page ${currentPage} of ${totalPages}`;
+const currentPath = currentPage === 1 ? '/blog' : `/blog/page/${currentPage}`;
+%>
 <%- include('layouts/main', { 
-    title: `Blog - Page ${currentPage}`, 
+    title: `Blog - Page ${currentPage}`,
+    description: description,
+    currentPath: currentPath,
     content: `
         <h1>Blog Posts</h1>
         <div class="row">

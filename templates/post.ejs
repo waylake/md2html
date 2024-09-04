@@ -4,18 +4,55 @@
       <a href="/category/${category}" class="badge bg-light text-dark">${category}</a>
     `).join(' ')
     : '';
+
+  const description = helpers.generateMetaDescription(post.content);
 %>
-<%- include('layouts/main', { title: post.title, content: `
-<article>
-  <h1>${post.title}</h1>
-  <div class="meta">
-    <span>${helpers.formatDate(post.date)}</span>
-    <span class="mx-2">•</span>
-    <span>${post.author}</span>
-    ${categories ? `<span class="mx-2">•</span>${categories}` : ''}
-  </div>
-  <div class="content">
-    ${post.content}
-  </div>
-</article>
-` }) %>
+<%- include('layouts/main', { 
+  title: post.title, 
+  description: description,
+  currentPath: post.url,
+  content: `
+    <article itemscope itemtype="http://schema.org/BlogPosting">
+      <h1 itemprop="headline">${post.title}</h1>
+      <div class="meta">
+        <time itemprop="datePublished" datetime="${post.date}">${helpers.formatDate(post.date)}</time>
+        <span class="mx-2">•</span>
+        <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <span itemprop="name">${post.author}</span>
+        </span>
+        ${categories ? `<span class="mx-2">•</span>${categories}` : ''}
+      </div>
+      <div class="content" itemprop="articleBody">
+        ${post.content}
+      </div>
+    </article>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "${post.title}",
+      "datePublished": "${post.date}",
+      "dateModified": "${post.lastModified || post.date}",
+      "author": {
+        "@type": "Person",
+        "name": "${post.author}"
+      },
+      "description": "${description}",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "${config.siteUrl}${post.url}"
+      },
+      "keywords": "${post.categories ? post.categories.join(', ') : ''}",
+      "publisher": {
+        "@type": "Organization",
+        "name": "${config.siteName}",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "${config.siteUrl}/images/logo.png"
+        }
+      }
+    }
+    </script>
+  `
+}) %>

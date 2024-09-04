@@ -3,16 +3,31 @@ const yaml = require("js-yaml");
 const path = require("path");
 const { buildPosts } = require("./posts");
 const { buildPages } = require("./pages");
+const { SitemapStream, streamToPromise } = require("sitemap");
+const { Readable } = require("stream");
+
+async function generateSitemap(config, posts) {
+  const links = [
+    { url: "/", changefreq: "daily", priority: 1 },
+    { url: "/about", changefreq: "monthly", priority: 0.8 },
+    ...posts.map((post) => ({
+      url: post.url,
+      changefreq: "weekly",
+      priority: 0.7,
+    })),
+  ];
+
+  const stream = new SitemapStream({ hostname: config.siteUrl });
+  const data = await streamToPromise(Readable.from(links).pipe(stream));
+  await fs.writeFile("public/sitemap.xml", data);
+}
 
 async function build() {
   console.log("Starting build process...");
 
   // Load configuration
-  console.log("Loading configuration...");
   const config = yaml.load(await fs.readFile("config/site.yml", "utf8"));
 
-  // Ensure public directory exists
-  console.log("Preparing public directory...");
   await fs.ensureDir("public");
 
   // Build posts
@@ -22,6 +37,8 @@ async function build() {
   // Build pages
   console.log("Building pages...");
   await buildPages(config, posts);
+  await generateSitemap(config, posts);
+  await fs.copy("static/robots.txt", "public/robots.txt");
 
   // Generate search index
   console.log("Generating search index...");

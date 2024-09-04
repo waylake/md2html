@@ -8,6 +8,76 @@ categories: ["programming", "javascript"]
 
 # Getting Started with Node.js
 
+# Getting Started with Node.js
+
+# Getting Started with Node.js
+
+# Getting Started with Node.js
+
+# Getting Started with Node.js
+
+# Getting Started with Node.js
+
+Node.js is a powerful JavaScript runtime built on Chrome's V8 JavaScript engine. Here's how to get started:
+
+1. Install Node.js from the official website.
+2. Open your terminal and type `node -v` to check if it's installed correctly.
+3. Create a new file called `app.js` and add the following code:
+
+```javascript
+console.log("Hello, Node.js!");
+```
+
+4. Run the file by typing `node app.js` in your terminal.
+
+Node.js is a powerful JavaScript runtime built on Chrome's V8 JavaScript engine. Here's how to get started:
+
+1. Install Node.js from the official website.
+2. Open your terminal and type `node -v` to check if it's installed correctly.
+3. Create a new file called `app.js` and add the following code:
+
+```javascript
+console.log("Hello, Node.js!");
+```
+
+4. Run the file by typing `node app.js` in your terminal.
+
+Node.js is a powerful JavaScript runtime built on Chrome's V8 JavaScript engine. Here's how to get started:
+
+1. Install Node.js from the official website.
+2. Open your terminal and type `node -v` to check if it's installed correctly.
+3. Create a new file called `app.js` and add the following code:
+
+```javascript
+console.log("Hello, Node.js!");
+```
+
+4. Run the file by typing `node app.js` in your terminal.
+
+Node.js is a powerful JavaScript runtime built on Chrome's V8 JavaScript engine. Here's how to get started:
+
+1. Install Node.js from the official website.
+2. Open your terminal and type `node -v` to check if it's installed correctly.
+3. Create a new file called `app.js` and add the following code:
+
+```javascript
+console.log("Hello, Node.js!");
+```
+
+4. Run the file by typing `node app.js` in your terminal.
+
+Node.js is a powerful JavaScript runtime built on Chrome's V8 JavaScript engine. Here's how to get started:
+
+1. Install Node.js from the official website.
+2. Open your terminal and type `node -v` to check if it's installed correctly.
+3. Create a new file called `app.js` and add the following code:
+
+```javascript
+console.log("Hello, Node.js!");
+```
+
+4. Run the file by typing `node app.js` in your terminal.
+
 Node.js is a powerful JavaScript runtime built on Chrome's V8 JavaScript engine. Here's how to get started:
 
 1. Install Node.js from the official website.

@@ -1,5 +1,6 @@
 siteName: "My Awesome Blog"
 siteDescription: "A blog about web development and technology"
 siteAuthor: "John Doe"
+siteUrl: "https://blog.waylake.com"
 language: "en"
 postsPerPage: 5

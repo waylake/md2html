@@ -1,5 +1,11 @@
+<%
+const description = config.siteDescription;
+const currentPath = '/';
+%>
 <%- include('layouts/main', { 
     title: 'Home',
+    description: description,
+    currentPath: currentPath,
     content: `
     <div class="jumbotron text-center mb-5">
         <h1 class="display-4">Welcome to ${config.siteName}</h1>
@@ -8,7 +14,6 @@
         <p>Explore the world of technology, programming, and web development with me.</p>
         <a class="btn btn-outline-primary" href="/blog" role="button">Explore Blog</a>
     </div>
-
     <div class="row mb-5">
         <div class="col-md-4">
             <div class="card h-100">
@@ -35,7 +40,6 @@
             </div>
         </div>
     </div>
-
     <div class="mt-5">
         <h3 class="mb-4">Latest Posts</h3>
         <div class="row">

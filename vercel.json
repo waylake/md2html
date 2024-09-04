@@ -1,0 +1,7 @@
+{
+  "routes": [
+    { "src": "/blog", "dest": "/blog/index.html" },
+    { "src": "/category/(.*)", "dest": "/category/$1/index.html" },
+    { "src": "/(.*)", "dest": "/$1.html" }
+  ]
+}

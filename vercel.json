@@ -1,12 +1,15 @@
 {
-  "routes": [
-    { "src": "/blog", "dest": "/blog/index.html" },
-    { "src": "/category/(.*)", "dest": "/category/$1/index.html" },
-    { "src": "/(.*)", "dest": "/$1.html" }
+  "rewrites": [
+    { "source": "/blog", "destination": "/blog/index.html" },
+    {
+      "source": "/category/:path*",
+      "destination": "/category/:path*/index.html"
+    },
+    { "source": "/:path*", "destination": "/:path*.html" }
   ],
   "headers": [
     {
-      "source": "/(.*)",
+      "source": "/:path*",
       "headers": [
         {
           "key": "X-Content-Type-Options",
@@ -27,7 +30,7 @@
       ]
     },
     {
-      "source": "/static/(.*)",
+      "source": "/static/:path*",
       "headers": [
         {
           "key": "Cache-Control",
@@ -36,7 +39,7 @@
       ]
     },
     {
-      "source": "/(.*)\\.html",
+      "source": "/:path*.html",
       "headers": [
         {
           "key": "Cache-Control",

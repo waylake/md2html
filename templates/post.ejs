@@ -4,7 +4,6 @@
       <a href="/category/${category}" class="badge bg-light text-dark">${category}</a>
     `).join(' ')
     : '';
-
   const description = helpers.generateMetaDescription(post.content);
 %>
 <%- include('layouts/main', { 
@@ -14,6 +13,7 @@
   content: `
     <article itemscope itemtype="http://schema.org/BlogPosting">
       <h1 itemprop="headline">${post.title}</h1>
+      ${post.image ? `<img src="${post.image}" alt="${post.title}" class="img-fluid mb-4">` : ''}
       <div class="meta">
         <time itemprop="datePublished" datetime="${post.date}">${helpers.formatDate(post.date)}</time>
         <span class="mx-2">•</span>
@@ -26,7 +26,6 @@
         ${post.content}
       </div>
     </article>
-
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -52,6 +51,7 @@
           "url": "${config.siteUrl}/images/logo.png"
         }
       }
+      ${post.image ? `,"image": "${config.siteUrl}${post.image}"` : ''}
     }
     </script>
   `

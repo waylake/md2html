@@ -4,6 +4,7 @@ date: "2024-03-05"
 author: "John Doe"
 description: "A beginner's guide to Node.js"
 categories: ["programming", "javascript"]
+image: "static/images/posts/test-blog/js-themeed-image.webp"
 ---
 
 # Getting Started with Node.js

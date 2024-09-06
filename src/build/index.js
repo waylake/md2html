@@ -16,10 +16,15 @@ async function generateSitemap(config, posts) {
       priority: 0.7,
     })),
   ];
-
   const stream = new SitemapStream({ hostname: config.siteUrl });
   const data = await streamToPromise(Readable.from(links).pipe(stream));
   await fs.writeFile("public/sitemap.xml", data);
+}
+
+async function copyImages() {
+  const sourceDir = path.join(process.cwd(), "static", "images");
+  const targetDir = path.join(process.cwd(), "public", "images");
+  await fs.copy(sourceDir, targetDir);
 }
 
 async function build() {
@@ -37,6 +42,7 @@ async function build() {
   // Build pages
   console.log("Building pages...");
   await buildPages(config, posts);
+
   await generateSitemap(config, posts);
   await fs.copy("static/robots.txt", "public/robots.txt");
 
@@ -59,6 +65,9 @@ async function build() {
   } else {
     console.log("Static directory does not exist. Skipping asset copy.");
   }
+
+  // Copy images
+  await copyImages();
 
   console.log("Site built successfully!");
 }

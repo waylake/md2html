@@ -7,27 +7,43 @@ const currentPath = currentPage === 1 ? '/blog' : `/blog/page/${currentPage}`;
     description: description,
     currentPath: currentPath,
     content: `
-        <h1>Blog Posts</h1>
+    <div class="container mt-5">
+        <h1 class="text-center mb-5">Blog Posts</h1>
         <div class="row">
             ${posts.map(post => `
-                <div class="col-md-6 mb-4">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">${post.title}</h5>
-                            <h6 class="card-subtitle mb-2 text-muted">${helpers.formatDate(post.date)}</h6>
-                            <p class="card-text">${helpers.truncate(post.description, 150)}</p>
-                            <a href="${post.url}" class="btn btn-outline-primary">Read More</a>
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="post-card">
+                        <div class="post-card-image" style="background-image: url('${post.image || '/images/default-post-image.jpg'}');"></div>
+                        <div class="post-card-content">
+                            <h3 class="post-card-title">${post.title}</h3>
+                            <p class="post-card-excerpt">${helpers.truncate(post.description, 100)}</p>
+                            <div class="post-card-meta">
+                                <span class="post-card-date">
+                                    <i class="far fa-calendar-alt"></i>
+                                    ${helpers.formatDate(post.date)}
+                                </span>
+                                <div class="post-card-categories">
+                                    ${post.categories ? post.categories.map(category => `
+                                        <span class="post-card-category">${category}</span>
+                                    `).join('') : ''}
+                                </div>
+                            </div>
+                            <a href="${post.url}" class="post-card-link">
+                                Read More <i class="fas fa-arrow-right"></i>
+                            </a>
                         </div>
                     </div>
                 </div>
             `).join('')}
         </div>
         
-        <nav aria-label="Page navigation">
-            <ul class="pagination">
+        <nav aria-label="Page navigation" class="mt-5">
+            <ul class="pagination justify-content-center">
                 ${currentPage > 1 ? `
                     <li class="page-item">
-                        <a class="page-link" href="/blog/page/${currentPage - 1}">Previous</a>
+                        <a class="page-link" href="/blog/page/${currentPage - 1}">
+                            <i class="fas fa-chevron-left"></i> Previous
+                        </a>
                     </li>
                 ` : ''}
                 ${Array.from({length: totalPages}, (_, i) => i + 1).map(page => `
@@ -37,10 +53,13 @@ const currentPath = currentPage === 1 ? '/blog' : `/blog/page/${currentPage}`;
                 `).join('')}
                 ${currentPage < totalPages ? `
                     <li class="page-item">
-                        <a class="page-link" href="/blog/page/${currentPage + 1}">Next</a>
+                        <a class="page-link" href="/blog/page/${currentPage + 1}">
+                            Next <i class="fas fa-chevron-right"></i>
+                        </a>
                     </li>
                 ` : ''}
             </ul>
         </nav>
+    </div>
     `
 }) %>

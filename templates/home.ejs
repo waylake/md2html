@@ -7,56 +7,67 @@ const currentPath = '/';
     description: description,
     currentPath: currentPath,
     content: `
-    <div class="jumbotron text-center mb-5">
-        <h1 class="display-4">Welcome to ${config.siteName}</h1>
-        <p class="lead">${config.siteDescription}</p>
-        <hr class="my-4">
-        <p>Explore the world of technology, programming, and web development with me.</p>
-        <a class="btn btn-outline-primary" href="/blog" role="button">Explore Blog</a>
-    </div>
-    <div class="row mb-5">
-        <div class="col-md-4">
-            <div class="card h-100">
-                <div class="card-body">
-                    <h2 class="card-title">Expert Insights</h2>
-                    <p class="card-text">Gain valuable insights from my years of experience in the tech industry. I share practical tips, best practices, and in-depth analyses of the latest trends.</p>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="card h-100">
-                <div class="card-body">
-                    <h2 class="card-title">Tutorials & Guides</h2>
-                    <p class="card-text">Learn new skills with step-by-step tutorials and comprehensive guides. From beginner to advanced topics, there's something for everyone.</p>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="card h-100">
-                <div class="card-body">
-                    <h2 class="card-title">Tech Reviews</h2>
-                    <p class="card-text">Stay up-to-date with the latest tools and technologies. I provide honest reviews and comparisons to help you make informed decisions.</p>
-                </div>
-            </div>
+    <div class="hero-section">
+        <div class="container">
+            <h1 class="hero-title">${config.siteName}</h1>
+            <p class="hero-subtitle">${config.siteDescription}</p>
+            <a href="/blog" class="btn btn-primary btn-lg">Explore Blog</a>
         </div>
     </div>
-    <div class="mt-5">
-        <h3 class="mb-4">Latest Posts</h3>
-        <div class="row">
-            ${posts.slice(0, 3).map(post => `
-                <div class="col-md-4 mb-4">
-                    <div class="card h-100">
-                        <div class="card-body">
-                            <h5 class="card-title">${post.title}</h5>
-                            <p class="card-text">${helpers.truncate(post.description, 100)}</p>
-                        </div>
-                        <div class="card-footer bg-white border-top-0">
-                            <a href="${post.url}" class="btn btn-outline-primary">Read More</a>
+
+    <section class="feature-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 text-center">
+                    <i class="fas fa-lightbulb feature-icon"></i>
+                    <h2 class="feature-title">Expert Insights</h2>
+                    <p class="feature-description">Gain valuable insights from years of experience in the tech industry. Practical tips, best practices, and in-depth analyses of the latest trends.</p>
+                </div>
+                <div class="col-md-4 text-center">
+                    <i class="fas fa-book feature-icon"></i>
+                    <h2 class="feature-title">Tutorials & Guides</h2>
+                    <p class="feature-description">Learn new skills with step-by-step tutorials and comprehensive guides. From beginner to advanced topics, there's something for everyone.</p>
+                </div>
+                <div class="col-md-4 text-center">
+                    <i class="fas fa-star feature-icon"></i>
+                    <h2 class="feature-title">Tech Reviews</h2>
+                    <p class="feature-description">Stay up-to-date with the latest tools and technologies. Honest reviews and comparisons to help you make informed decisions.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="latest-posts-section">
+        <div class="container">
+            <h2 class="section-title">Latest Posts</h2>
+            <div class="row">
+                ${posts.slice(0, 3).map(post => `
+                    <div class="col-md-4 mb-4">
+                        <div class="post-card">
+                            <div class="post-card-image" style="background-image: url('${post.image || '/images/default-post-image.jpg'}');"></div>
+                            <div class="post-card-content">
+                                <h3 class="post-card-title">${post.title}</h3>
+                                <p class="post-card-excerpt">${helpers.truncate(post.description, 100)}</p>
+                                <div class="post-card-meta">
+                                    <span class="post-card-date">
+                                        <i class="far fa-calendar-alt"></i>
+                                        ${helpers.formatDate(post.date)}
+                                    </span>
+                                    <div class="post-card-categories">
+                                        ${post.categories.map(category => `
+                                            <span class="post-card-category">${category}</span>
+                                        `).join('')}
+                                    </div>
+                                </div>
+                                <a href="${post.url}" class="post-card-link">
+                                    Read More <i class="fas fa-arrow-right"></i>
+                                </a>
+                            </div>
                         </div>
                     </div>
-                </div>
-            `).join('')}
+                `).join('')}
+            </div>
         </div>
-    </div>
+    </section>
     `
 }) %>
